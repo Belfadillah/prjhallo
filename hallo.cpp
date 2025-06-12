@@ -1,21 +1,34 @@
-// Commit: Menampilkan isi array string ke layar
+// Commit: Menjadikan jumlah nama sebagai input dari pengguna
 
 #include <iostream>
 #include <string>
 using namespace std;
 
 int main() {
-    string nama[5];
+    int jumlah;
 
-    nama[0] = "Andi";
-    nama[1] = "Budi";
-    nama[2] = "Citra";
-    nama[3] = "Dewi";
-    nama[4] = "Eko";
+    // Meminta jumlah nama yang ingin dimasukkan
+    cout << "Masukkan jumlah nama yang ingin diproses (maks 100): ";
+    cin >> jumlah;
 
-    // Menampilkan isi array
-    cout << "Daftar Nama:\n";
-    for (int i = 0; i < 5; i++) {
+    // Validasi jumlah
+    if (jumlah <= 0 || jumlah > 100) {
+        cout << "Jumlah tidak valid.\n";
+        return 1;
+    }
+
+    string nama[100]; // Array diperbesar agar dinamis
+
+    // Input nama-nama
+    cin.ignore(); // Menghindari bug input
+    for (int i = 0; i < jumlah; i++) {
+        cout << "Nama ke-" << i + 1 << ": ";
+        getline(cin, nama[i]); // Memungkinkan nama dengan spasi
+    }
+
+    // Menampilkan daftar nama
+    cout << "\nDaftar Nama:\n";
+    for (int i = 0; i < jumlah; i++) {
         cout << i + 1 << ". " << nama[i] << endl;
     }
 
